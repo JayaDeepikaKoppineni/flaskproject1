@@ -1,0 +1,16 @@
+import json
+
+tweet_data = [
+    {"id": 1, "text": "This is tweet 1"},
+    {"id": 2, "text": "Another tweet here"},
+    # Add more tweet data as needed
+]
+
+# Specify the file path
+file_path = 'tweet_data.json'
+
+# Write tweet data to the JSON file
+with open(file_path, 'w') as json_file:
+    json.dump(tweet_data, json_file, indent=2)
+
+print(f'Tweet data has been saved to {file_path}')

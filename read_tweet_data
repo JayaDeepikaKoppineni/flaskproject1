@@ -1,0 +1,21 @@
+@app.route('/')
+def home():
+    return 'Welcome to the Tweet API!'
+
+@app.route('/tweets', methods=['GET'])
+def get_all_tweets():
+    all_tweets = read_tweet_data()
+    # Your code to process and return all tweets
+    return jsonify(all_tweets)
+
+@app.route('/tweet/<int:tweet_id>', methods=['GET'])
+def get_specific_tweet(tweet_id):
+    try:
+        tweet_data = read_tweet_data()
+        specific_tweet = next((tweet for tweet in tweet_data if tweet['id'] == tweet_id), None)
+        if specific_tweet:
+            return jsonify(specific_tweet)
+        else:
+            return jsonify({"error": "Tweet not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
